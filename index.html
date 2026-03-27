@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Cliente</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #111;
+        color: white;
+        text-align: center;
+    }
+
+    .box {
+        background: #222;
+        padding: 20px;
+        margin: 50px auto;
+        width: 300px;
+        border-radius: 10px;
+    }
+
+    input, button {
+        margin: 10px;
+        padding: 10px;
+        width: 80%;
+        border-radius: 5px;
+        border: none;
+    }
+
+    button {
+        background: #00ff88;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Cadastro</h2>
+
+    <input type="text" id="cpf" placeholder="Digite seu CPF">
+    <input type="password" id="senha" placeholder="Digite sua senha">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <div id="resultado"></div>
+</div>
+
+<script>
+let dadosSalvos = false;
+
+function cadastrar() {
+    let cpf = document.getElementById("cpf").value;
+    let senha = document.getElementById("senha").value;
+
+    if (cpf === "" || senha === "") {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+    dadosSalvos = true;
+
+    document.getElementById("resultado").innerHTML = `
+        <p>Dados cadastrados!</p>
+        <button onclick="consultar()">Consultar</button>
+    `;
+}
+
+function consultar() {
+    let cpf = document.getElementById("cpf").value;
+    let senha = document.getElementById("senha").value;
+
+    if (dadosSalvos) {
+        document.getElementById("resultado").innerHTML = `
+            <p>CPF: ${cpf}</p>
+            <p>Senha: ${senha}</p>
+            <button onclick="apagar()">Apagar Dados</button>
+        `;
+    }
+}
+
+function apagar() {
+    document.getElementById("cpf").value = "";
+    document.getElementById("senha").value = "";
+
+    document.getElementById("resultado").innerHTML = `
+        <p>Dados apagados!</p>
+    `;
+}
+</script>
+
+</body>
+</html
